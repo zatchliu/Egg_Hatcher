@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Egg Hatcher</title>
+<h1 align="center">Egg Hatcher</h1>
+<div style = "text-align: center;">
+	<form method="POST">
+		<input type=submit value='Lay an Egg'>
+	</form>
+	<form action="/scores">
+		<input type=submit value='Hatch the Eggs'>
+	</form>
+	<body>
+		<span id="result"></span>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+		<script type="text/javascript">
+		   const root_url = {{request.root_url|tojson|safe}};
+		   const intervalID = setInterval(update_values, 1000);
+		   function update_values() {
+			 $.getJSON(
+			   root_url + "_timer",
+			   data => {
+				 $("#result").text(data.result);
+			   }
+			 )
+		   }
+		</script>
+	 </body>
+	{% for message in get_flashed_messages() %}
+  		<div class="flash">{{ message }}</div>
+	{% endfor %}
+</div>
+<script type="text/javascript" src="static/paper-full.js"></script>
+<script type="text/paperscript" canvas="myCanvas">
+	var chicken = new Raster({
+		source: 'static/the_chicken.png',
+		position: new Point(400, 175)
+	});
+
+	var egg = new Shape.Ellipse({
+		center: [400, 335],
+		radius: [35, 45],
+		strokeColor: 'black',
+		strokeWidth: 6,
+		fillColor: 'white'
+	});
+
+	var eggs = new Raster({
+		source: 'static/egg_pile.png',
+		position: new Point(420, 570)
+	});
+
+	var destination = new Point(400, 600);
+	
+	function onFrame(event) {
+		var vector = destination - egg.position;
+		egg.position += vector / 60;
+		egg.content = Math.round(vector.length);
+	}
+</script>
+</head>
+<body>
+	<div style = "text-align: center;">
+	<canvas id="myCanvas" width="800" height="700" resize></canvas>
+	</div>
+</body>
+</html>
