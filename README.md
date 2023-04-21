@@ -8,7 +8,6 @@ The website displays a chicken and two buttons. One button has the chicken lay a
 
 **Packages and modules**
 
-* time
-* unittest
-* flask
-* requests
+* time for implementing the timer
+* unittest for testing functionality
+* flask for the website framework
