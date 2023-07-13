@@ -1,0 +1,16 @@
+<html>
+    <div style = "text-align: center;">
+    <h1>Welcome to the Egg Hatcher</h1>
+    <p> There is a chicken. You can only lay one egg every minute. The goal is to hatch the highest number of eggs, but you don't know how many eggs are currently in the hatcher. </p>
+    <p> You must choose whether to lay an egg and contribute to the egg count but risk someone else hatching all the eggs, or hatch all the eggs for yourself.</p>
+    <p>Enter a username to continue to the chicken</p>
+    <title>Rules</title>
+    <form actions="#" method="POST">
+        <input type="text" name="username" placeholder="Enter a username">
+		<input type="submit" value="Continue">
+	</form>
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+    </div>
+</html>

@@ -1,7 +1,14 @@
 <html>
-    <p>High Score: {{high_score}}</p>
-    <p>Your Score: {{score}}</p>
-    <form action="/">
-        <input type="submit" value="play again?">
-    </form>
+    <title>Score</title>
+    <div style = "text-align: center;">
+        <p>High Score: {{high_score}}</p>
+        <p>Personal Best: {{pb}}</p>
+        <p>Your Score: {{score}}</p>
+        <form method="POST">
+            <input type="submit" value="Play Again?">
+        </form>
+        <form action="/">
+            <input type="submit" value="Rules">
+        </form>
+    </div>
 </html>
